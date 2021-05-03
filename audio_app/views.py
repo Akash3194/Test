@@ -27,6 +27,8 @@ def check_inputs(ser, data_, param_list):
     It validates the most common data: file_type and id
     """
     print(data_)
+    if 'file_type' not in data_:
+        raise ValidationError({"file_type": "file_type is required"})
     data = {param: data_[param] for param in param_list}
     serializer = ser(data=data)
     serializer.is_valid(raise_exception=True)
